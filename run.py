@@ -9,6 +9,13 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Inicializar la base de datos primero
 db.init_app(app)
+
+# --- IMPORTACIÓN DE MODELOS 
+from models.medico_model import Medico
+from models.paciente_model import Paciente
+from models.consulta_model import Consulta
+
+# --- CREACIÓN DE TABLAS (
 with app.app_context():
     db.create_all()
 
