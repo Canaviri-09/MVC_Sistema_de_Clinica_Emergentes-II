@@ -6,41 +6,16 @@
 <h1 class="my-4">Panel Administrativo</h1>
 <p class="text-muted">Bienvenido al Sistema de Gestion de Clinica Medica</p>
 
-<div class="row mt-4 g-4">
-    <div class="col-md-4">
-        <div class="card shadow-sm border-0">
-            <div class="card-body text-center py-4">
-                <h2 class="fw-bold">{{ total_medicos }}</h2>
-                <p class="text-muted mb-3">Medicos Registrados</p>
-                <a href="{{ url_for('medico.index') }}" class="btn btn-primary">Ver Medicos</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card shadow-sm border-0">
-            <div class="card-body text-center py-4">
-                <h2 class="fw-bold">{{ total_pacientes }}</h2>
-                <p class="text-muted mb-3">Pacientes Registrados</p>
-                <a href="{{ url_for('paciente.index') }}" class="btn btn-primary">Ver Pacientes</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card shadow-sm border-0">
-            <div class="card-body text-center py-4">
-                <h2 class="fw-bold">{{ total_consultas }}</h2>
-                <p class="text-muted mb-3">Consultas Realizadas</p>
-                <a href="{{ url_for('consulta.index') }}" class="btn btn-primary">Ver Consultas</a>
-            </div>
-        </div>
-    </div>
+<div class="d-flex flex-wrap gap-2 mb-3">
+    <a href="{{ url_for('medico.create') }}" class="btn btn-outline-primary">Nuevo Medico</a>
+    <a href="{{ url_for('paciente.create') }}" class="btn btn-outline-primary">Nuevo Paciente</a>
+    <a href="{{ url_for('consulta.create') }}" class="btn btn-success">Registrar Consulta</a>
+    <a href="{{ url_for('usuario.index') }}" class="btn btn-outline-secondary">Gestionar Usuarios</a>
 </div>
 
-<div class="mt-4">
-    <h5>Acciones Rapidas</h5>
-    <a href="{{ url_for('medico.create') }}" class="btn btn-outline-primary me-2">Nuevo Medico</a>
-    <a href="{{ url_for('paciente.create') }}" class="btn btn-outline-primary me-2">Nuevo Paciente</a>
-    <a href="{{ url_for('consulta.create') }}" class="btn btn-success me-2">Registrar Consulta</a>
-    <a href="{{ url_for('usuario.index') }}" class="btn btn-outline-secondary">Gestionar Usuarios</a>
+<div class="d-flex flex-wrap gap-2">
+    <a href="{{ url_for('medico.index') }}" class="btn btn-primary">Ver Medicos</a>
+    <a href="{{ url_for('paciente.index') }}" class="btn btn-primary">Ver Pacientes</a>
+    <a href="{{ url_for('consulta.index') }}" class="btn btn-primary">Ver Consultas</a>
 </div>
 {% endblock %}
