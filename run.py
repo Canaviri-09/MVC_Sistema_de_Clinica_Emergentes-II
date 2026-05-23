@@ -9,6 +9,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Inicializar la base de datos primero
 db.init_app(app)
+with app.app_context():
+    db.create_all()
 
 # Importamos los controladores AQUÍ, una vez que 'db' ya está inicializado
 from controllers import usuario_controller, medico_controller, paciente_controller, consulta_controller
