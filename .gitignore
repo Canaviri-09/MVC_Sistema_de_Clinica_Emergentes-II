@@ -1,0 +1,15 @@
+venv/
+.venv/
+
+
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Carpeta de instancia de Flask (contiene configuraciones locales/secretas)
+instance/
+
+# Archivos de variables de entorno (opcional pero muy recomendado)
+.env
+.flaskenv
