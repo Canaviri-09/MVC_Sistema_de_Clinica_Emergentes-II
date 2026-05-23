@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Panel Principal{% endblock %}
+
+{% block content %}
+<h1 class="my-4"><i class="bi bi-hospital"></i> Panel Administrativo</h1>
+<p class="text-muted">Bienvenido al Sistema de Gestión de Clínica Médica</p>
+
+<div class="row mt-4 g-4">
+    <div class="col-md-4">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-person-badge fs-1 text-primary"></i>
+                <h2 class="mt-2 fw-bold">{{ total_medicos }}</h2>
+                <p class="text-muted">Médicos Registrados</p>
+                <a href="{{ url_for('medico.index') }}" class="btn btn-primary btn-sm">Ver Médicos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-people fs-1 text-primary"></i>
+                <h2 class="mt-2 fw-bold">{{ total_pacientes }}</h2>
+                <p class="text-muted">Pacientes Registrados</p>
+                <a href="{{ url_for('paciente.index') }}" class="btn btn-primary btn-sm">Ver Pacientes</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-clipboard2-pulse fs-1 text-primary"></i>
+                <h2 class="mt-2 fw-bold">{{ total_consultas }}</h2>
+                <p class="text-muted">Consultas Realizadas</p>
+                <a href="{{ url_for('consulta.index') }}" class="btn btn-primary btn-sm">Ver Consultas</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header card-header-clinic">
+                <i class="bi bi-lightning-charge"></i> Acciones Rápidas
+            </div>
+            <div class="card-body d-flex flex-wrap gap-2">
+                <a href="{{ url_for('medico.create') }}" class="btn btn-outline-primary">
+                    <i class="bi bi-plus-circle"></i> Nuevo Médico
+                </a>
+                <a href="{{ url_for('paciente.create') }}" class="btn btn-outline-primary">
+                    <i class="bi bi-plus-circle"></i> Nuevo Paciente
+                </a>
+                <a href="{{ url_for('consulta.create') }}" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Registrar Consulta
+                </a>
+                <a href="{{ url_for('usuario.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-person-lock"></i> Gestionar Usuarios
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

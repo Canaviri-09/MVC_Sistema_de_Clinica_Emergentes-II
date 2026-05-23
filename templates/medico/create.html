@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Registrar Medico{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h1 class="my-4">Registro de Medicos</h1>
+    <form action="{{ url_for('medico.create') }}" method="POST">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Dr. Juan Perez" required>
+      </div>
+      <div class="mb-3">
+        <label for="especialidad" class="form-label">Especialidad</label>
+        <input type="text" class="form-control" id="especialidad" name="especialidad" placeholder="Ej. Cardiologia" required>
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Telefono</label>
+        <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ej. 71234567" required>
+      </div>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo Electronico</label>
+        <input type="email" class="form-control" id="correo" name="correo" placeholder="doctor@clinica.com" required>
+      </div>
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Registrar Medico</button>
+        <a href="{{ url_for('medico.index') }}" class="btn btn-secondary ms-2">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

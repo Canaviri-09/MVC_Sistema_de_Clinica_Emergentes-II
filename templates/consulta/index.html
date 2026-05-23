@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Consultas{% endblock %}
+{% block content %}
+  <h1 class="my-4">Registro de Consultas</h1>
+  <a href="{{ url_for('consulta.create') }}" class="btn btn-success mb-3">Nueva Consulta</a>
+
+  <div class="card mb-4">
+    <div class="card-header" style="background-color:#0077a8; color:#fff;">Filtrar por Fecha</div>
+    <div class="card-body">
+      <form method="GET" action="{{ url_for('consulta.index') }}" class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
+          <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio or '' }}">
+        </div>
+        <div class="col-md-4">
+          <label for="fecha_fin" class="form-label">Fecha Fin</label>
+          <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin or '' }}">
+        </div>
+        <div class="col-md-4 d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Filtrar</button>
+          <a href="{{ url_for('consulta.index') }}" class="btn btn-secondary">Limpiar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-striped table-hover border">
+    <thead>
+      <tr>
+        <th>ID</th><th>Fecha</th><th>Medico</th><th>Paciente</th><th>Diagnostico</th><th>Tratamiento</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for consulta in consultas %}
+      <tr>
+        <td>#{{ consulta.id }}</td>
+        <td>{{ consulta.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+        <td>{{ consulta.medico.nombre }}</td>
+        <td>{{ consulta.paciente.nombre }}</td>
+        <td>{{ consulta.diagnostico }}</td>
+        <td>{{ consulta.tratamiento }}</td>
+        <td class="text-center">
+          <a href="{{ url_for('consulta.edit', id=consulta.id) }}" class="btn btn-sm btn-primary me-1">Editar</a>
+          <a href="{{ url_for('consulta.delete', id=consulta.id) }}" class="btn btn-sm btn-danger"
+             onclick="return confirm('Eliminar esta consulta?')">Eliminar</a>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" class="text-center text-muted">No se encontraron consultas.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

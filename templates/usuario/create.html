@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Crear Usuario{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h1 class="my-4">Registro de Usuarios</h1>
+    <form action="{{ url_for('usuario.create') }}" method="POST">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Nombre de Usuario (Login)</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contrasena</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <div class="mb-3">
+        <label for="rol" class="form-label">Rol del Usuario</label>
+        <select id="rol" name="rol" class="form-select" required>
+          <option value="" disabled selected>Seleccione un rol...</option>
+          <option value="admin">Administrador</option>
+          <option value="medico">Medico</option>
+          <option value="recepcionista">Recepcionista</option>
+        </select>
+      </div>
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Registrar Usuario</button>
+        <a href="{{ url_for('usuario.index') }}" class="btn btn-secondary ms-2">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

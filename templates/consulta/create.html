@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Nueva Consulta{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h1 class="my-4">Registrar Consulta Medica</h1>
+    <form action="{{ url_for('consulta.create') }}" method="POST">
+      <div class="mb-3">
+        <label for="id_medico" class="form-label">Medico Tratante</label>
+        <select id="id_medico" name="id_medico" class="form-select" required>
+          <option value="" disabled selected>Seleccione un medico...</option>
+          {% for medico in medicos %}
+            <option value="{{ medico.id }}">{{ medico.nombre }} - {{ medico.especialidad }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="id_paciente" class="form-label">Paciente</label>
+        <select id="id_paciente" name="id_paciente" class="form-select" required>
+          <option value="" disabled selected>Seleccione un paciente...</option>
+          {% for paciente in pacientes %}
+            <option value="{{ paciente.id }}">{{ paciente.nombre }} ({{ paciente.edad }} años)</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha y Hora de la Consulta</label>
+        <input type="datetime-local" class="form-control" id="fecha" name="fecha">
+        <div class="form-text">Si se deja vacio, se registra la fecha y hora actuales.</div>
+      </div>
+      <div class="mb-3">
+        <label for="diagnostico" class="form-label">Diagnostico</label>
+        <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3"
+                  placeholder="Descripcion del diagnostico medico..." required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="tratamiento" class="form-label">Tratamiento Indicado</label>
+        <textarea class="form-control" id="tratamiento" name="tratamiento" rows="3"
+                  placeholder="Indicaciones y medicamentos recetados..." required></textarea>
+      </div>
+      <div class="mt-4">
+        <button type="submit" class="btn btn-success">Registrar Consulta</button>
+        <a href="{{ url_for('consulta.index') }}" class="btn btn-secondary ms-2">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

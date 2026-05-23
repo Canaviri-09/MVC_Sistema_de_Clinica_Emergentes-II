@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Editar Consulta{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h1 class="my-4">Modificar Consulta #{{ consulta.id }}</h1>
+    <form action="{{ url_for('consulta.edit', id=consulta.id) }}" method="POST">
+      <div class="mb-3">
+        <label for="id_medico" class="form-label">Medico Tratante</label>
+        <select id="id_medico" name="id_medico" class="form-select" required>
+          {% for medico in medicos %}
+            <option value="{{ medico.id }}" {% if consulta.id_medico == medico.id %}selected{% endif %}>
+              {{ medico.nombre }} - {{ medico.especialidad }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="id_paciente" class="form-label">Paciente</label>
+        <select id="id_paciente" name="id_paciente" class="form-select" required>
+          {% for paciente in pacientes %}
+            <option value="{{ paciente.id }}" {% if consulta.id_paciente == paciente.id %}selected{% endif %}>
+              {{ paciente.nombre }} ({{ paciente.edad }} años)
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha y Hora</label>
+        <input type="datetime-local" class="form-control" id="fecha" name="fecha"
+               value="{{ consulta.fecha.strftime('%Y-%m-%dT%H:%M') }}">
+      </div>
+      <div class="mb-3">
+        <label for="diagnostico" class="form-label">Diagnostico</label>
+        <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3" required>{{ consulta.diagnostico }}</textarea>
+      </div>
+      <div class="mb-3">
+        <label for="tratamiento" class="form-label">Tratamiento Indicado</label>
+        <textarea class="form-control" id="tratamiento" name="tratamiento" rows="3" required>{{ consulta.tratamiento }}</textarea>
+      </div>
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="{{ url_for('consulta.index') }}" class="btn btn-secondary ms-2">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
